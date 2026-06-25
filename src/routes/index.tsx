@@ -1,9 +1,33 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 
-export const Route = createFileRoute('/')({
+import { getProducts } from "../shared/api/products";
+
+export const Route = createFileRoute("/")({
   component: HomePage,
-})
+});
 
 function HomePage() {
-  return <div>Home Page</div>
+  const { data, isPending, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <div>
+      <h1>Products</h1>
+
+      {data?.products.map((product) => (
+        <div key={product.id}>{product.title}</div>
+      ))}
+    </div>
+  );
 }
