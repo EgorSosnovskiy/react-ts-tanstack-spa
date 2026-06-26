@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getProducts } from "../shared/api/products";
 
+import { Button } from "@/components/ui/button";
+
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
@@ -28,6 +30,8 @@ function HomePage() {
       {data?.products.map((product) => (
         <div key={product.id}>{product.title}</div>
       ))}
+
+      <Button>Click me</Button>
     </div>
   );
 }
