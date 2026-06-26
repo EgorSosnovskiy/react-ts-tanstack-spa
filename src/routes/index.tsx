@@ -1,17 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
-import { getProducts } from "../shared/api/products";
+import { Button } from '@/components/ui/button';
 
-import { Button } from "@/components/ui/button";
+import { getProducts } from '../shared/api/products';
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/')({
   component: HomePage,
 });
 
 function HomePage() {
   const { data, isPending, error } = useQuery({
-    queryKey: ["products"],
+    queryKey: ['products'],
     queryFn: getProducts,
   });
 
