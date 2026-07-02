@@ -13,11 +13,11 @@ export function NavigationItem({ item }: NavigationItemProps) {
   const content = (
     <>
       <div className="flex items-center gap-3">
-        <Icon size={18} />
+        <Icon className="text-blue-300" size={16} strokeWidth={2} />
         <span>{item.label}</span>
       </div>
 
-      {item.hasChildren && <ChevronDown size={16} />}
+      {item.hasChildren && <ChevronDown size={14} strokeWidth={2} />}
     </>
   );
 
@@ -25,7 +25,7 @@ export function NavigationItem({ item }: NavigationItemProps) {
     return (
       <Link
         to={item.to}
-        className="flex items-center justify-between rounded-md px-3 py-2 text-sm text-white transition-colors hover:bg-white/10"
+        className="flex h-10 items-center justify-between rounded-sm px-3 text-[15px] font-normal text-white transition-colors hover:bg-white/10"
       >
         {content}
       </Link>
@@ -35,7 +35,7 @@ export function NavigationItem({ item }: NavigationItemProps) {
   return (
     <button
       type="button"
-      className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm text-white transition-colors hover:bg-white/10"
+      className="flex h-10 w-full items-center justify-between rounded-sm px-3 text-[15px] font-normal text-white transition-colors hover:bg-white/10"
     >
       {content}
     </button>

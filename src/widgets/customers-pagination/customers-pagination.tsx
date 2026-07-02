@@ -28,16 +28,21 @@ export function CustomersPagination({
   const to = Math.min(currentPage * pageSize, totalItems);
 
   return (
-    <section className="mt-6 flex items-center justify-between">
+    <section className="mr-2 mb-2 ml-4 flex items-center justify-between">
       <PaginationNavigation
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
       />
 
-      <PaginationInfo from={from} to={to} total={totalItems} />
+      <div className="flex items-center gap-5">
+        <PaginationInfo from={from} to={to} total={totalItems} />
 
-      <PaginationSizeSelect value={pageSize} onValueChange={onPageSizeChange} />
+        <PaginationSizeSelect
+          value={pageSize}
+          onValueChange={onPageSizeChange}
+        />
+      </div>
     </section>
   );
 }

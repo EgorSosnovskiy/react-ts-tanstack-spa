@@ -5,7 +5,7 @@ import { CustomersNavigation } from './components/customers-navigation';
 
 export function CustomersPage() {
   return (
-    <main className="mx-auto flex w-full max-w-[1600px] flex-col px-8 py-6">
+    <main className="flex w-full flex-col gap-4 bg-white">
       <CustomersNavigation />
       <CustomerProfile />
       <CustomersContent />

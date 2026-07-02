@@ -2,26 +2,26 @@ export const Tabs = [
   {
     id: 'clients',
     label: 'Clients',
-    active: true,
+    isActive: true,
   },
   {
     id: 'deposit',
     label: 'Deposit',
-    active: false,
+    isActive: false,
   },
   {
     id: 'withdraw',
     label: 'Withdraw',
-    active: false,
+    isActive: false,
   },
   {
     id: 'loans',
     label: 'Loans',
-    active: false,
+    isActive: false,
   },
   {
     id: 'transactions',
     label: 'Transaction History',
-    active: false,
+    isActive: false,
   },
 ] as const;

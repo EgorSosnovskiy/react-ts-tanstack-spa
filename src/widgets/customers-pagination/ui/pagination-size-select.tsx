@@ -22,13 +22,13 @@ export function PaginationSizeSelect({
       value={String(value)}
       onValueChange={(value) => onValueChange(Number(value))}
     >
-      <SelectTrigger className="h-9 w-42.5 rounded-sm">
+      <SelectTrigger className="h-8 w-41.25 rounded-none border-0 bg-gray-100 px-3 text-[13px] shadow-none focus:ring-0">
         <SelectValue />
       </SelectTrigger>
 
-      <SelectContent>
+      <SelectContent className="rounded-none">
         {pageSizes.map((size) => (
-          <SelectItem key={size} value={String(size)}>
+          <SelectItem key={size} value={String(size)} className="text-[13px]">
             {size} entries per page
           </SelectItem>
         ))}

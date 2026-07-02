@@ -5,13 +5,13 @@ import { AppSidebar } from '@/app/sidebar';
 
 export function AppLayout({ children }: PropsWithChildren) {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen bg-gray-200">
       <AppHeader />
 
-      <div className="flex">
+      <div className="flex min-h-[calc(100vh-60px)]">
         <AppSidebar />
 
-        <div className="flex-1 p-8">{children}</div>
+        <div className="flex-1 overflow-x-auto pt-5">{children}</div>
       </div>
     </div>
   );

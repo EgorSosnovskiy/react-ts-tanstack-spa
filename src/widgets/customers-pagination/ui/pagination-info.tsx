@@ -6,10 +6,9 @@ interface PaginationInfoProps {
 
 export function PaginationInfo({ from, to, total }: PaginationInfoProps) {
   return (
-    <p className="text-muted-foreground text-sm">
-      Showing <span className="text-foreground font-medium">{from}</span> to{' '}
-      <span className="text-foreground font-medium">{to}</span> of{' '}
-      <span className="text-foreground font-medium">{total}</span> entries
+    <p className="text-[13px] leading-none text-[#888]">
+      Showing <span>{from}</span> to <span>{to}</span> of <span>{total}</span>{' '}
+      entries
     </p>
   );
 }

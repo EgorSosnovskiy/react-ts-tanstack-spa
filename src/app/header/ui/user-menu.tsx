@@ -4,13 +4,13 @@ export function UserMenu() {
   return (
     <button
       type="button"
-      className="flex items-center gap-2 text-sm text-slate-700"
+      className="flex items-center gap-1.5 text-[14px] font-normal text-slate-700 transition-colors hover:text-[#2F80ED]"
     >
-      <User size={18} />
+      <User size={14} strokeWidth={2} />
 
-      <span>Dwayne Exum</span>
+      <span className="leading-none">Dwayne Exum</span>
 
-      <ChevronDown size={16} />
+      <ChevronDown size={14} strokeWidth={2} />
     </button>
   );
 }

@@ -18,19 +18,19 @@ export function PaginationNavigation({
   const pages = getPaginationPages(currentPage, totalPages);
 
   return (
-    <nav aria-label="Pagination" className="flex items-center gap-2">
+    <nav aria-label="Pagination" className="flex items-center gap-7">
       <button
         type="button"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="hover:bg-muted flex h-6 w-6 items-center justify-center rounded-md transition-colors disabled:pointer-events-none disabled:opacity-40"
+        className="flex h-6 w-6 items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >
-        <ChevronLeft className="h-4 w-4" />
+        <ChevronLeft className="h-6 w-6" />
       </button>
 
       {pages.map((page, index) =>
         page === '...' ? (
-          <span key={`dots-${index}`} className="text-muted-foreground px-2">
+          <span key={`dots-${index}`} className="px-1 text-[13px] text-[#888]">
             ...
           </span>
         ) : (
@@ -39,11 +39,11 @@ export function PaginationNavigation({
             type="button"
             onClick={() => onPageChange(page)}
             className={cn(
-              'text-sm transition-colors',
+              'flex min-w-5 justify-center text-[13px] transition-colors',
 
               page === currentPage
                 ? 'text-primary'
-                : 'text-muted-foreground hover:text-foreground',
+                : 'text-[#666] hover:text-[#2F80ED]',
             )}
           >
             {page}
@@ -55,9 +55,9 @@ export function PaginationNavigation({
         type="button"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="hover:bg-muted flex h-8 w-8 items-center justify-center rounded-md transition-colors disabled:pointer-events-none disabled:opacity-40"
+        className="flex h-6 w-6 items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >
-        <ChevronRight className="h-4 w-4" />
+        <ChevronRight className="h-6 w-6" />
       </button>
     </nav>
   );
