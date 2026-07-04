@@ -4,7 +4,7 @@
 
 As a fraud management operator,
 
-I want to browse customers, search for a specific customer, and navigate through pages of customer records.
+I want to browse customers, search for a specific customer, filter customer records, and navigate through pages of customer data.
 
 ---
 
@@ -25,7 +25,9 @@ Returns:
 Supports:
 
 - server-side pagination;
-- server-side search.
+- server-side search by customer name;
+- server-side filtering by account ID;
+- server-side filtering by account balance.
 
 API provider:
 
@@ -93,7 +95,7 @@ Customer data is loaded from Supabase.
 
 ### AC-3
 
-User can search customers.
+User can search and filter customers.
 
 #### AC-3.1
 
@@ -101,19 +103,31 @@ Search input is displayed above the table.
 
 #### AC-3.2
 
-Search is performed on the server.
+Search and filtering are performed on the server.
 
 #### AC-3.3
 
-Search is debounced.
+Search input is debounced.
 
 #### AC-3.4
 
-Search is performed by customer name.
+Customers can be searched by customer name.
 
 #### AC-3.5
 
-If no customers match the search query, an empty state is displayed.
+Customers can be filtered by account ID.
+
+#### AC-3.6
+
+Customers can be filtered by account balance.
+
+#### AC-3.7
+
+Account balance filtering uses a ±5% tolerance.
+
+#### AC-3.8
+
+If no customers match the search criteria, an empty state is displayed.
 
 ---
 
@@ -137,11 +151,15 @@ User can select the number of displayed rows.
 
 Pagination is performed on the server.
 
+#### AC-4.5
+
+Changing the page or page size scrolls the page to the top.
+
 ---
 
 ### AC-5
 
-Loading and error states are displayed.
+Loading, empty and error states are displayed.
 
 #### AC-5.1
 
@@ -150,6 +168,10 @@ Loading state is displayed while customers are being fetched.
 #### AC-5.2
 
 API errors are displayed to the user.
+
+#### AC-5.3
+
+An empty state is displayed when no customers match the current search criteria.
 
 ---
 
@@ -163,8 +185,7 @@ The page contains:
 
 - top navigation;
 - customer profile section;
-- search field;
-- customer actions;
+- customers toolbar;
 - customers table;
 - pagination.
 

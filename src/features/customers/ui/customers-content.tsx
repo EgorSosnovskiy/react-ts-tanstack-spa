@@ -1,5 +1,8 @@
 import { useCustomers } from '@/entities/customer';
 import { scrollToTop } from '@/shared/lib/scroll';
+import { CustomersTableSkeleton } from '@/shared/ui/skeletons/customers-table-skeleton';
+import { EmptyState } from '@/shared/ui/states';
+import { ErrorState } from '@/shared/ui/states/error-state';
 import { CustomersPagination } from '@/widgets/customers-pagination';
 import { CustomersTable } from '@/widgets/customers-table';
 
@@ -25,14 +28,6 @@ export function CustomersContent() {
     balance: filters.balance,
   });
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  if (isError || !data) {
-    return <p>Something went wrong.</p>;
-  }
-
   return (
     <>
       <CustomersToolbar
@@ -42,22 +37,32 @@ export function CustomersContent() {
         onBalanceChange={(value) => updateFilter('balance', value)}
       />
 
-      <CustomersTable customers={data.customers} />
+      {isLoading ? (
+        <CustomersTableSkeleton />
+      ) : isError || !data ? (
+        <ErrorState message="Unable to load customers. Please try again later." />
+      ) : data.customers.length === 0 ? (
+        <EmptyState title="No customers found" />
+      ) : (
+        <>
+          <CustomersTable customers={data.customers} />
 
-      <CustomersPagination
-        currentPage={page}
-        pageSize={pageSize}
-        totalItems={data.total}
-        onPageChange={(page) => {
-          setPage(page);
-          scrollToTop();
-        }}
-        onPageSizeChange={(size) => {
-          setPage(1);
-          setPageSize(size);
-          scrollToTop();
-        }}
-      />
+          <CustomersPagination
+            currentPage={page}
+            pageSize={pageSize}
+            totalItems={data.total}
+            onPageChange={(page) => {
+              setPage(page);
+              scrollToTop();
+            }}
+            onPageSizeChange={(size) => {
+              setPage(1);
+              setPageSize(size);
+              scrollToTop();
+            }}
+          />
+        </>
+      )}
     </>
   );
 }

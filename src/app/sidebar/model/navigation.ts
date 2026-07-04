@@ -5,6 +5,7 @@ import {
   FileText,
   LayoutDashboard,
   Settings,
+  Users,
 } from 'lucide-react';
 
 export interface NavigationLink {
@@ -15,6 +16,11 @@ export interface NavigationLink {
 }
 
 export const navigation: NavigationLink[] = [
+  {
+    label: 'Customers',
+    icon: Users,
+    to: '/customers',
+  },
   {
     label: 'Dashboard',
     icon: LayoutDashboard,
