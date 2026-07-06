@@ -22,6 +22,38 @@ export interface GetCustomersResponse {
   total: number;
 }
 
+export interface UpdateCustomerParams {
+  id: string;
+
+  fullName: string;
+
+  city: string;
+
+  state: string;
+
+  address: string;
+
+  phone: string;
+}
+
+export interface CreateCustomerParams {
+  fullName: string;
+
+  city: string;
+
+  state: string;
+
+  address: string;
+
+  phone: string;
+}
+
+export interface CreateAccountParams {
+  customerId: string;
+
+  balance: number;
+}
+
 export async function getCustomers({
   page,
   pageSize,
@@ -29,14 +61,19 @@ export async function getCustomers({
   accountNumber,
   balance,
 }: GetCustomersParams): Promise<GetCustomersResponse> {
-  let query = supabase.from('customers_view').select('*', {
-    count: 'exact',
-  });
+  let query = supabase
+    .from('customers_view')
+    .select('*', {
+      count: 'exact',
+    })
+    .order('customer_number', { ascending: true });
 
-  if (search.trim()) {
-    query = query.or(
-      `customer_number.ilike.%${search}%,full_name.ilike.%${search}%`,
-    );
+  const isNumber = /^\d+$/.test(search.trim());
+
+  if (isNumber) {
+    query = query.eq('customer_number', Number(search));
+  } else {
+    query = query.ilike('full_name', `%${search}%`);
   }
 
   if (accountNumber.trim()) {
@@ -68,4 +105,63 @@ export async function getCustomers({
 
     total: count ?? 0,
   };
+}
+
+export async function updateCustomer({
+  id,
+  fullName,
+  city,
+  state,
+  address,
+  phone,
+}: UpdateCustomerParams) {
+  const { error } = await supabase
+    .from('customers')
+    .update({
+      full_name: fullName,
+      city,
+      state,
+      address,
+      phone,
+    })
+    .eq('id', id);
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function createCustomer({
+  fullName,
+  city,
+  state,
+  address,
+  phone,
+}: CreateCustomerParams) {
+  const { error } = await supabase.from('customers').insert({
+    full_name: fullName,
+    city,
+    state,
+    address,
+    phone,
+  });
+
+  if (error) {
+    throw error;
+  }
+}
+
+export async function createAccount({
+  customerId,
+  balance,
+}: CreateAccountParams) {
+  const { error } = await supabase.from('accounts').insert({
+    customer_id: customerId,
+    balance,
+    status: 'ACTIVE',
+  });
+
+  if (error) {
+    throw error;
+  }
 }

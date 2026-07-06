@@ -1,11 +1,23 @@
 import { Search } from 'lucide-react';
 
-import type { CustomerFilters } from '@/features/customers/model/customer-filters';
+import type { Customer } from '@/entities/customer';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import type { CustomerFilters } from '@/widgets/customers-content';
 
 interface CustomersToolbarProps {
   filters: CustomerFilters;
+
+  selectedCustomer: Customer | null;
+
+  onEditCustomer(): void;
+
+  onAddCustomer(): void;
+
+  onAddAccount(): void;
+
+  addAccountDisabled: boolean;
 
   onSearchChange(value: string): void;
 
@@ -16,10 +28,20 @@ interface CustomersToolbarProps {
 
 export function CustomersToolbar({
   filters,
+  selectedCustomer,
+  onEditCustomer,
+  onAddCustomer,
+  onAddAccount,
+  addAccountDisabled,
   onSearchChange,
   onAccountNumberChange,
   onBalanceChange,
 }: CustomersToolbarProps) {
+  const addAccountTooltip = !selectedCustomer
+    ? 'Select a customer'
+    : selectedCustomer.balance !== null
+      ? 'Customer already has an account'
+      : null;
   return (
     <section className="bg-[#f5f5f596] px-16 py-5">
       <div className="grid grid-cols-[240px_1fr_240px] items-center gap-8">
@@ -81,16 +103,47 @@ export function CustomersToolbar({
         {/* Actions */}
 
         <div className="ml-auto flex items-start gap-2">
-          <Button className="h-10 w-34">Edit Info</Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span className="inline-block">
+                <Button disabled={!selectedCustomer} onClick={onEditCustomer}>
+                  Edit Info
+                </Button>
+              </span>
+            </TooltipTrigger>
+
+            {!selectedCustomer && (
+              <TooltipContent>Select a customer to edit</TooltipContent>
+            )}
+          </Tooltip>
 
           <div className="flex flex-col gap-2">
-            <Button variant="outline" className="h-10 w-34">
+            <Button
+              variant="outline"
+              className="h-10 w-34"
+              onClick={onAddCustomer}
+            >
               Add Customer
             </Button>
 
-            <Button variant="outline" className="h-10 w-34">
-              Add Account
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="inline-block">
+                  <Button
+                    variant="outline"
+                    className="h-10 w-34"
+                    onClick={onAddAccount}
+                    disabled={addAccountDisabled}
+                  >
+                    Add Account
+                  </Button>
+                </span>
+              </TooltipTrigger>
+
+              {addAccountTooltip && (
+                <TooltipContent>{addAccountTooltip}</TooltipContent>
+              )}
+            </Tooltip>
           </div>
         </div>
       </div>

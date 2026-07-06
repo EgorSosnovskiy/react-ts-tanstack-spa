@@ -1,3 +1,2 @@
-export * from './empty-state';
-export * from './error-state';
-export * from './state';
+export { EmptyState } from './empty-state';
+export { ErrorState } from './error-state';

@@ -23,7 +23,7 @@ export function PaginationNavigation({
         type="button"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
-        className="flex h-6 w-6 items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
+        className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
@@ -39,10 +39,10 @@ export function PaginationNavigation({
             type="button"
             onClick={() => onPageChange(page)}
             className={cn(
-              'flex min-w-5 justify-center text-[13px] transition-colors',
+              'flex min-w-5 cursor-pointer justify-center text-[13px] transition-colors',
 
               page === currentPage
-                ? 'text-primary'
+                ? 'text-primary cursor-default'
                 : 'text-[#666] hover:text-[#2F80ED]',
             )}
           >
@@ -55,7 +55,7 @@ export function PaginationNavigation({
         type="button"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        className="flex h-6 w-6 items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
+        className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >
         <ChevronRight className="h-6 w-6" />
       </button>

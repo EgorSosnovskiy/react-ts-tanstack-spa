@@ -25,7 +25,7 @@ Returns:
 Supports:
 
 - server-side pagination;
-- server-side search by customer name;
+- server-side search by customer name or customer ID;
 - server-side filtering by account ID;
 - server-side filtering by account balance.
 
@@ -111,7 +111,7 @@ Search input is debounced.
 
 #### AC-3.4
 
-Customers can be searched by customer name.
+Customers can be searched by customer name or customer ID.
 
 #### AC-3.5
 
@@ -159,7 +159,7 @@ Changing the page or page size scrolls the page to the top.
 
 ### AC-5
 
-Loading, empty and error states are displayed.
+Loading, empty, and error states provide user feedback during data loading and filtering.
 
 #### AC-5.1
 
@@ -172,6 +172,14 @@ API errors are displayed to the user.
 #### AC-5.3
 
 An empty state is displayed when no customers match the current search criteria.
+
+#### AC-5.4
+
+User receives success or error notifications after creating or editing customer data.
+
+#### AC-5.5
+
+Customer forms validate required fields before submission.
 
 ---
 

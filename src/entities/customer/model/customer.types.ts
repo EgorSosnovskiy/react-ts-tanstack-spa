@@ -17,7 +17,7 @@ export interface Customer {
 
   phone: string;
 
-  balance: number;
+  balance: number | null;
 
-  status: AccountStatus;
+  status: AccountStatus | null;
 }
