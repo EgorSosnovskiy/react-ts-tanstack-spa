@@ -28,14 +28,14 @@ export function CustomersPagination({
   const to = Math.min(currentPage * pageSize, totalItems);
 
   return (
-    <section className="mr-2 mb-2 ml-4 flex items-center justify-between">
+    <section className="mr-2 mb-2 flex items-center justify-between lg:ml-4">
       <PaginationNavigation
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
       />
 
-      <div className="flex items-center gap-5">
+      <div className="flex items-center gap-2 lg:gap-5">
         <PaginationInfo from={from} to={to} total={totalItems} />
 
         <PaginationSizeSelect

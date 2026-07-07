@@ -18,7 +18,7 @@ export function PaginationNavigation({
   const pages = getPaginationPages(currentPage, totalPages);
 
   return (
-    <nav aria-label="Pagination" className="flex items-center gap-7">
+    <nav aria-label="Pagination" className="flex items-center gap-2 lg:gap-7">
       <button
         type="button"
         disabled={currentPage === 1}
