@@ -24,6 +24,7 @@ export const navigation: NavigationLink[] = [
   {
     label: 'Dashboard',
     icon: LayoutDashboard,
+    to: '/dashboard',
   },
   {
     label: 'Reports',
