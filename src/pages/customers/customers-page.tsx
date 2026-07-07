@@ -1,4 +1,4 @@
-import { CustomersContent } from '@/features/customers';
+import { CustomersContent } from '@/widgets/customers-content';
 
 import { CustomerProfile } from './components/customer-profile';
 import { CustomersNavigation } from './components/customers-navigation';

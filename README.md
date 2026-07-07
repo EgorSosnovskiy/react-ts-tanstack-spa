@@ -13,7 +13,7 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 - Vite
 - TanStack Router
 - TanStack Query
-- DummyJSON API
+- Supabase
 
 ### UI
 
@@ -36,7 +36,7 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 - Multi-page SPA
 - Client-side routing with TanStack Router
 - Server state management with TanStack Query
-- Data fetching from DummyJSON API
+- Data fetching from Supabase
 - Responsive layout for mobile and desktop devices
 - Modular project architecture
 - Optional WebSocket chat module
@@ -67,6 +67,14 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 The project follows a lightweight Feature-Sliced Design (FSD)-inspired architecture.
 
 The codebase is organized into independent layers that separate application initialization, business logic, domain entities, reusable features, shared utilities, and UI components. This approach improves scalability, maintainability, and code reuse.
+
+The project currently includes reusable CRUD workflows for customer management built with React Hook Form and TanStack Query mutations.
+
+## Environment
+
+This project includes the required Supabase frontend configuration in the `.env` file.
+
+The provided environment variables contain only the public Supabase URL and anonymous key used by the frontend.ё
 
 ## Getting Started
 
