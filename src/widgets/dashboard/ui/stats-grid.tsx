@@ -1,17 +1,63 @@
-import { dashboardCards } from '../model/dashboard-cards';
+import { ArrowRightLeft, Hourglass, Loader, Percent, X } from 'lucide-react';
+
+import type { DashboardData } from '@/entities/dashboard';
+
 import { ApprovedCard } from './approved-card';
 import { StatsCard } from './stats-card';
 
-export function StatsGrid() {
+interface StatsGridProps {
+  data: DashboardData;
+}
+
+export function StatsGrid({ data }: StatsGridProps) {
+  const statsCards = [
+    {
+      icon: ArrowRightLeft,
+      iconColor: '#7DB1F1',
+      value: data.totalTransactions.value,
+      label: 'All transactions',
+    },
+    {
+      icon: Percent,
+      iconColor: '#39D000',
+      value: `${data.approvalRate.value}%`,
+      label: 'Approval Rate',
+    },
+    {
+      icon: Hourglass,
+      iconColor: '#7DB1F1',
+      value: data.pendingApproval.value,
+      label: 'Pending Approval',
+    },
+  ];
+  const actionCards = [
+    {
+      icon: X,
+      iconColor: '#FF5A5A',
+      value: data.rejectedTransactions.value,
+      label: 'Rejected Transactions',
+      actionLabel: 'Analyze',
+    },
+    {
+      icon: Loader,
+      iconColor: '#FFB547',
+      value: data.postponedApproval.value,
+      label: 'Postponed Approval',
+      actionLabel: 'Analyze',
+    },
+  ];
   return (
     <div className="grid min-w-0 gap-2 xl:grid-cols-3">
-      {dashboardCards.slice(0, 3).map((card) => (
+      {statsCards.map((card) => (
         <StatsCard key={card.label} {...card} />
       ))}
 
-      <ApprovedCard />
+      <ApprovedCard
+        approved={data.approvedTransactions.value}
+        rejected={data.rejectedTransactions.value}
+      />
 
-      {dashboardCards.slice(3).map((card) => (
+      {actionCards.map((card) => (
         <StatsCard key={card.label} {...card} className="h-52" />
       ))}
     </div>

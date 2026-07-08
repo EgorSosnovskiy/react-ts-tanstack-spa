@@ -1,11 +1,34 @@
 import { Pie, PieChart } from 'recharts';
 
+import type { DashboardPieItem } from '@/entities/dashboard';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
-import { ChartContainer } from '@/shared/ui/chart';
+import { type ChartConfig, ChartContainer } from '@/shared/ui/chart';
 
-import { pieConfig, pieData, totalTransactions } from '../model/pie-data';
+interface PieCardProps {
+  data: DashboardPieItem[];
+  total: number;
+}
 
-export function PieCard() {
+export const pieConfig = {
+  deposits: {
+    label: 'Deposits',
+    color: '#2F80ED',
+  },
+  loans: {
+    label: 'Loans',
+    color: '#68A4E3',
+  },
+  withdrawals: {
+    label: 'Withdrawals',
+    color: '#C8DDF3',
+  },
+} satisfies ChartConfig;
+
+export function PieCard({ data, total }: PieCardProps) {
+  const chartData = data.map((item) => ({
+    ...item,
+    fill: pieConfig[item.type].color,
+  }));
   return (
     <Card className="min-w-0">
       <CardHeader className="pt-10">
@@ -20,24 +43,31 @@ export function PieCard() {
           className="mx-auto mt-10 aspect-square w-full max-w-55"
         >
           <PieChart>
-            <Pie data={pieData} dataKey="value" nameKey="type" stroke="none" />
+            <Pie
+              data={chartData}
+              dataKey="value"
+              nameKey="type"
+              stroke="none"
+            />
           </PieChart>
         </ChartContainer>
 
         <div className="mt-8 flex flex-col pl-6">
           <p className="text-5xl font-normal tracking-tight">
-            {totalTransactions.toLocaleString('en-US').replace(/,/g, ' ')}
+            {total.toLocaleString('en-US').replace(/,/g, ' ')}
           </p>
 
           <div className="mt-3 space-y-1">
-            {pieData.map((item) => (
+            {data.map((item) => (
               <div key={item.type} className="flex items-center gap-2">
                 <span
                   className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: item.fill }}
+                  style={{
+                    backgroundColor: pieConfig[item.type].color,
+                  }}
                 />
 
-                <span className="text-[15px] text-slate-700">
+                <span className="text-[15px]">
                   {pieConfig[item.type].label}
                 </span>
               </div>

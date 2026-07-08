@@ -3,30 +3,35 @@ import { Pie, PieChart } from 'recharts';
 import { Card, CardContent } from '@/shared/ui/card';
 import { type ChartConfig, ChartContainer } from '@/shared/ui/chart';
 
-const approved = 12027;
-const rejected = 85;
-
-const chartData = [
-  {
-    name: 'Approved',
-    value: approved,
-    fill: '#39D000',
-  },
-  {
-    name: 'Rejected',
-    value: rejected,
-    fill: '#FF5A5A',
-  },
-];
+interface ApprovedCardProps {
+  approved: number;
+  rejected: number;
+}
 
 const chartConfig = {
   approved: {
     label: 'Approved',
     color: '#39D000',
   },
+  rejected: {
+    label: 'Rejected',
+    color: '#FF5A5A',
+  },
 } satisfies ChartConfig;
 
-export function ApprovedCard() {
+export function ApprovedCard({ approved, rejected }: ApprovedCardProps) {
+  const chartData = [
+    {
+      name: 'Approved',
+      value: approved,
+      fill: '#39D000',
+    },
+    {
+      name: 'Rejected',
+      value: rejected,
+      fill: '#FF5A5A',
+    },
+  ];
   return (
     <Card>
       <CardContent className="flex flex-col items-center">
