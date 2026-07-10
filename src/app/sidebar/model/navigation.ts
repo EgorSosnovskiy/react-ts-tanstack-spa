@@ -27,13 +27,13 @@ export const navigation: NavigationLink[] = [
     to: '/dashboard',
   },
   {
-    label: 'Reports',
-    icon: FileText,
-    hasChildren: true,
-  },
-  {
     label: 'Transactions',
     icon: ArrowLeftRight,
+    to: '/transactions',
+  },
+  {
+    label: 'Reports',
+    icon: FileText,
     hasChildren: true,
   },
   {

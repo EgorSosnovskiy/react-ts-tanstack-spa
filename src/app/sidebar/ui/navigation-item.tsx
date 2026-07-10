@@ -25,7 +25,7 @@ export function NavigationItem({ item }: NavigationItemProps) {
 
   if (item.to) {
     return (
-      <Link to={item.to} activeOptions={{ exact: true }}>
+      <Link to={item.to} activeOptions={{ exact: true, includeSearch: false }}>
         {({ isActive }) => (
           <div
             className={cn(

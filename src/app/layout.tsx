@@ -22,7 +22,7 @@ export function AppLayout({ children }: PropsWithChildren) {
           <AppSidebar />
         </div>
 
-        <div className="flex-1 overflow-x-auto pt-5">{children}</div>
+        <div className="flex-1 overflow-x-auto">{children}</div>
       </div>
       <Toaster />
     </div>
