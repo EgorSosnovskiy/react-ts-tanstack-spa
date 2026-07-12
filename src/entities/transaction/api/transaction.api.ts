@@ -12,6 +12,7 @@ export async function getTransactions(): Promise<TransactionListItem[]> {
     .from('transaction_review_list_view')
     .select('*')
     .in('status', ['PENDING', 'POSTPONED'])
+    .in('type', ['DEPOSIT', 'WITHDRAW'])
     .order('created_at', { ascending: false });
 
   type QueryResult = QueryData<typeof query>;
@@ -46,7 +47,8 @@ export async function getTransactionReviewDetails(
       `
       account_id,
       atm_latitude,
-      atm_longitude
+      atm_longitude,
+      atm_street
     `,
     )
     .eq('id', id)
@@ -68,5 +70,7 @@ export async function getTransactionReviewDetails(
     atmLatitude: transaction.atm_latitude,
 
     atmLongitude: transaction.atm_longitude,
+
+    atmStreet: transaction.atm_street,
   };
 }

@@ -28,4 +28,6 @@ export interface TransactionReviewDetails {
   atmLatitude: number;
 
   atmLongitude: number;
+
+  atmStreet: string;
 }

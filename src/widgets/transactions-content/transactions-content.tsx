@@ -2,6 +2,8 @@ import {
   useTransactionReviewDetails,
   useTransactions,
 } from '@/entities/transaction';
+import { TransactionPageSkeleton } from '@/shared/ui/skeletons/transaction-page-skeleton';
+import { EmptyState, ErrorState } from '@/shared/ui/states';
 import { TransactionDetails } from '@/widgets/transaction-details';
 import { TransactionsList } from '@/widgets/transactions-list';
 
@@ -22,15 +24,19 @@ export function TransactionsContent() {
   const selectedTransaction = transactions.find((t) => t.id === selectedId);
 
   if (isLoading) {
-    return <p>Loading transactions...</p>;
+    return <TransactionPageSkeleton />;
   }
 
   if (isError) {
-    return <p>Failed to load transactions.</p>;
+    return <ErrorState message="Unable to load transactions." />;
+  }
+
+  if (transactions.length === 0) {
+    return <EmptyState title="No transactions found" />;
   }
 
   return (
-    <section className="flex flex-1 overflow-hidden">
+    <section className="flex flex-1 flex-col overflow-hidden xl:flex-row">
       <TransactionsList
         transactions={transactions}
         selectedId={selectedId}

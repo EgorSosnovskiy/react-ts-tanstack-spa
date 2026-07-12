@@ -123,7 +123,7 @@ The map automatically updates when another transaction is selected.
 
 #### AC-4.3
 
-The map location is determined from the transaction ATM address.
+The map location is determined from the transaction ATM coordinates.
 
 #### AC-4.4
 

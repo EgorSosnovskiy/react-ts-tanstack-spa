@@ -1,1 +1,1 @@
-export { DashboardContent } from './ui/dashboard-content';
+export { DashboardContent } from './dashboard-content';

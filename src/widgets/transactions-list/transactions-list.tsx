@@ -1,5 +1,7 @@
 import type { TransactionListItem } from '@/entities/transaction';
 
+import { TransactionCard } from './ui/transaction-card';
+
 interface TransactionsListProps {
   transactions: TransactionListItem[];
 
@@ -14,33 +16,16 @@ export function TransactionsList({
   onSelect,
 }: TransactionsListProps) {
   return (
-    <aside className="w-80 border-r border-gray-200">
-      <ul className="flex flex-col">
-        {transactions.map((transaction) => {
-          const isSelected = transaction.id === selectedId;
-
-          return (
-            <li
-              key={transaction.id}
-              onClick={() => onSelect(transaction.id)}
-              className={`cursor-pointer border-b p-4 transition-colors ${
-                isSelected ? 'bg-gray-100' : 'hover:bg-gray-50'
-              }`}
-            >
-              <div className="font-medium">{transaction.customerName}</div>
-
-              <div className="text-sm text-gray-500">
-                #{transaction.customerNumber}
-              </div>
-
-              <div className="mt-2">{transaction.type}</div>
-
-              <div>${transaction.amount}</div>
-
-              <div>Fraud score: {transaction.fraudScore}</div>
-            </li>
-          );
-        })}
+    <aside className="flex w-full flex-col border-b border-gray-300 bg-gray-100 pt-6 xl:h-full xl:w-75 xl:border-b-0 xl:border-l">
+      <ul className="flex max-h-60 flex-1 flex-col gap-1 overflow-y-auto xl:max-h-none">
+        {transactions.map((transaction) => (
+          <TransactionCard
+            key={transaction.id}
+            transaction={transaction}
+            selected={transaction.id === selectedId}
+            onClick={() => onSelect(transaction.id)}
+          />
+        ))}
       </ul>
     </aside>
   );

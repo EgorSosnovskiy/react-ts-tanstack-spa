@@ -1,3 +1,9 @@
+export {
+  formatFraudScore,
+  formatTransactionAmount,
+  formatTransactionDate,
+  formatTransactionType,
+} from './lib/transaction-formatters';
 export type {
   TransactionListItem,
   TransactionReviewDetails,

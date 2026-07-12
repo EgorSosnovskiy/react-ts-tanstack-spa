@@ -2,9 +2,9 @@ import { useDashboard } from '@/entities/dashboard';
 import { DashboardSkeleton } from '@/shared/ui/skeletons/dashboard-skeleton';
 import { ErrorState } from '@/shared/ui/states/error-state';
 
-import { ChartCard } from './chart-card';
-import { PieCard } from './pie-card';
-import { StatsGrid } from './stats-grid';
+import { ChartCard } from './ui/chart-card';
+import { PieCard } from './ui/pie-card';
+import { StatsGrid } from './ui/stats-grid';
 
 export function DashboardContent() {
   const { data, isLoading, isError } = useDashboard();

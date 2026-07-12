@@ -2,7 +2,14 @@ import type {
   TransactionListItem,
   TransactionReviewDetails,
 } from '@/entities/transaction';
-import { TransactionMap } from '@/widgets/transaction-map';
+import { TransactionDetailsSkeleton } from '@/shared/ui/skeletons/transaction-details-skeleton';
+import { ErrorState } from '@/shared/ui/states';
+
+import { AccountCard } from './ui/account-card';
+import { ActionButtons } from './ui/action-buttons';
+import { ATMCard } from './ui/atm-card';
+import { SummaryCard } from './ui/summary-card';
+import { TransactionBadge } from './ui/transaction-badge';
 
 interface TransactionDetailsProps {
   transaction?: TransactionListItem;
@@ -21,65 +28,40 @@ export function TransactionDetails({
   isError,
 }: TransactionDetailsProps) {
   if (isLoading) {
-    return (
-      <section className="flex flex-1 items-center justify-center">
-        Loading transaction...
-      </section>
-    );
+    return <TransactionDetailsSkeleton />;
   }
 
   if (isError || !transaction || !details) {
     return (
       <section className="flex flex-1 items-center justify-center">
-        Failed to load transaction.
+        <ErrorState message="Unable to load transaction." />;
       </section>
     );
   }
 
   return (
-    <section className="flex flex-1 flex-col gap-3 p-6">
-      <h2 className="text-xl font-semibold">Transaction Details</h2>
+    <section className="flex-1 overflow-y-auto px-4 py-3">
+      <p className="mt-2 mb-2 ml-2 text-[14px] font-medium tracking-wide text-[#2F72D6] uppercase">
+        Fraudulent Activity Alert
+      </p>
 
-      <div>
-        <strong>Customer:</strong> {transaction.customerName}
+      <TransactionBadge transaction={transaction} />
+
+      <div className="mt-1 grid grid-cols-1 gap-1 xl:grid-cols-[1fr_600px]">
+        <div className="flex flex-col gap-1">
+          <SummaryCard />
+
+          <AccountCard transaction={transaction} details={details} />
+        </div>
+
+        <ATMCard
+          latitude={details.atmLatitude}
+          longitude={details.atmLongitude}
+          street={details.atmStreet}
+        />
       </div>
 
-      <div>
-        <strong>Customer Number:</strong> #{transaction.customerNumber}
-      </div>
-
-      <div>
-        <strong>Account Number:</strong> {details.accountNumber}
-      </div>
-
-      <div>
-        <strong>Type:</strong> {transaction.type}
-      </div>
-
-      <div>
-        <strong>Amount:</strong> ${transaction.amount}
-      </div>
-
-      <div>
-        <strong>Fraud Score:</strong> {transaction.fraudScore}
-      </div>
-
-      <div>
-        <strong>Created At:</strong> {transaction.createdAt}
-      </div>
-
-      <div>
-        <strong>Latitude:</strong> {details.atmLatitude}
-      </div>
-
-      <div>
-        <strong>Longitude:</strong> {details.atmLongitude}
-      </div>
-
-      <TransactionMap
-        latitude={details?.atmLatitude}
-        longitude={details?.atmLongitude}
-      />
+      <ActionButtons />
     </section>
   );
 }
