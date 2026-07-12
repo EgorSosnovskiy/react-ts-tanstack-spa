@@ -7,29 +7,23 @@ import type { NavigationLink as NavigationItemModel } from '../model/navigation'
 
 interface NavigationItemProps {
   item: NavigationItemModel;
+  collapsed?: boolean;
 }
 
-export function NavigationItem({ item }: NavigationItemProps) {
+export function NavigationItem({
+  item,
+  collapsed = false,
+}: NavigationItemProps) {
   const Icon = item.icon;
-
-  const content = (
-    <>
-      <div className="flex items-center gap-3">
-        <Icon className="text-blue-300" size={16} strokeWidth={2} />
-        <span>{item.label}</span>
-      </div>
-
-      {item.hasChildren && <ChevronDown size={14} strokeWidth={2} />}
-    </>
-  );
 
   if (item.to) {
     return (
-      <Link to={item.to} activeOptions={{ exact: true }}>
+      <Link to={item.to} activeOptions={{ exact: true, includeSearch: false }}>
         {({ isActive }) => (
           <div
             className={cn(
-              'flex h-10 items-center justify-between rounded-sm border-l-4 px-3 transition-colors',
+              'flex h-9 items-center rounded-sm border-l-4 transition-colors',
+              collapsed ? 'justify-center px-4' : 'justify-between px-3',
               isActive
                 ? 'border-white bg-white/12'
                 : 'border-transparent hover:bg-white/10',
@@ -38,13 +32,18 @@ export function NavigationItem({ item }: NavigationItemProps) {
             <div className="flex items-center gap-3">
               <Icon
                 size={16}
-                className={isActive ? 'text-white' : 'text-blue-300'}
+                strokeWidth={2}
+                className={
+                  isActive || collapsed ? 'text-white' : 'text-blue-300'
+                }
               />
 
-              <span>{item.label}</span>
+              {!collapsed && <span>{item.label}</span>}
             </div>
 
-            {item.hasChildren && <ChevronDown size={14} />}
+            {item.hasChildren && !collapsed && (
+              <ChevronDown size={14} strokeWidth={2} />
+            )}
           </div>
         )}
       </Link>
@@ -54,9 +53,24 @@ export function NavigationItem({ item }: NavigationItemProps) {
   return (
     <button
       type="button"
-      className="flex h-10 w-full items-center justify-between rounded-sm px-3 text-[15px] font-normal text-white transition-colors hover:bg-white/10"
+      className={cn(
+        'flex h-8 w-full items-center rounded-sm text-[15px] font-normal text-white transition-colors hover:bg-white/10',
+        collapsed ? 'justify-center px-0' : 'justify-between px-3',
+      )}
     >
-      {content}
+      <div className="flex items-center gap-3">
+        <Icon
+          size={16}
+          strokeWidth={2}
+          className={collapsed ? 'text-white' : 'text-blue-300'}
+        />
+
+        {!collapsed && <span>{item.label}</span>}
+      </div>
+
+      {item.hasChildren && !collapsed && (
+        <ChevronDown size={14} strokeWidth={2} />
+      )}
     </button>
   );
 }

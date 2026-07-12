@@ -51,7 +51,9 @@ VALUES
 ---------------------------------------------------------------
 
 CREATE TEMP TABLE tmp_accounts AS
-SELECT id
+SELECT
+    row_number() OVER () AS rn,
+    id
 FROM public.accounts;
 
 ---------------------------------------------------------------
@@ -96,10 +98,10 @@ INSERT INTO tmp_transactions (
 )
 SELECT
     (
-        SELECT id
-        FROM tmp_accounts
-        ORDER BY random()
-        LIMIT 1
+    SELECT id
+    FROM tmp_accounts
+    WHERE rn =
+        floor(random() * (SELECT count(*) FROM tmp_accounts))::int + 1
     )                                               AS account_id,
 
     NULL::text                                      AS transaction_type,

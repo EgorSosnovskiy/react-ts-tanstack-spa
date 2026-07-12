@@ -2,15 +2,15 @@ import { useDashboard } from '@/entities/dashboard';
 import { DashboardSkeleton } from '@/shared/ui/skeletons/dashboard-skeleton';
 import { ErrorState } from '@/shared/ui/states/error-state';
 
-import { ChartCard } from './chart-card';
-import { PieCard } from './pie-card';
-import { StatsGrid } from './stats-grid';
+import { ChartCard } from './ui/chart-card';
+import { PieCard } from './ui/pie-card';
+import { StatsGrid } from './ui/stats-grid';
 
 export function DashboardContent() {
   const { data, isLoading, isError } = useDashboard();
 
   return (
-    <section className="px-6 pb-4">
+    <section className="mt-5 px-6 pb-4">
       <h2 className="mb-6 text-sm font-medium tracking-wide text-[#2F80ED] uppercase">
         Fraud Management Dashboard
       </h2>

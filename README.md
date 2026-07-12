@@ -21,6 +21,9 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 - Shadcn UI
 - Radix UI
 - Lucide React
+- React Hook Form
+- React Leaflet
+- Recharts
 
 ### Development Tools
 
@@ -68,13 +71,13 @@ The project follows a lightweight Feature-Sliced Design (FSD)-inspired architect
 
 The codebase is organized into independent layers that separate application initialization, business logic, domain entities, reusable features, shared utilities, and UI components. This approach improves scalability, maintainability, and code reuse.
 
-The project currently includes reusable CRUD workflows for customer management built with React Hook Form and TanStack Query mutations.
+The project currently includes reusable CRUD workflows for customer management built with React Hook Form and TanStack Query mutations and a transaction review workflow with React Leaflet integration for ATM location visualization.
 
 ## Environment
 
 This project includes the required Supabase frontend configuration in the `.env` file.
 
-The provided environment variables contain only the public Supabase URL and anonymous key used by the frontend.ё
+The provided environment variables contain only the public Supabase URL and anonymous key used by the frontend.
 
 ## Getting Started
 
