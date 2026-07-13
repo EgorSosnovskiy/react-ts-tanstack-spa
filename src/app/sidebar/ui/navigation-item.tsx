@@ -8,11 +8,13 @@ import type { NavigationLink as NavigationItemModel } from '../model/navigation'
 interface NavigationItemProps {
   item: NavigationItemModel;
   collapsed?: boolean;
+  onOpenHelp(): void;
 }
 
 export function NavigationItem({
   item,
   collapsed = false,
+  onOpenHelp,
 }: NavigationItemProps) {
   const Icon = item.icon;
 
@@ -47,6 +49,29 @@ export function NavigationItem({
           </div>
         )}
       </Link>
+    );
+  }
+
+  if (item.action === 'help') {
+    return (
+      <button
+        type="button"
+        onClick={onOpenHelp}
+        className={cn(
+          'flex h-8 w-full cursor-pointer items-center rounded-sm text-[15px] font-normal text-white transition-colors hover:bg-white/10',
+          collapsed ? 'justify-center px-0' : 'justify-between px-3',
+        )}
+      >
+        <div className="flex items-center gap-3">
+          <Icon
+            size={16}
+            strokeWidth={2}
+            className={collapsed ? 'text-white' : 'text-blue-300'}
+          />
+
+          {!collapsed && <span>{item.label}</span>}
+        </div>
+      </button>
     );
   }
 

@@ -13,6 +13,7 @@ export interface NavigationLink {
   icon: LucideIcon;
   to?: string;
   hasChildren?: boolean;
+  action?: 'help';
 }
 
 export const navigation: NavigationLink[] = [
@@ -39,6 +40,7 @@ export const navigation: NavigationLink[] = [
   {
     label: 'Help',
     icon: CircleHelp,
+    action: 'help',
   },
   {
     label: 'Settings',

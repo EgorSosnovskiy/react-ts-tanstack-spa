@@ -10,7 +10,7 @@ export function DashboardContent() {
   const { data, isLoading, isError } = useDashboard();
 
   return (
-    <section className="mt-5 px-6 pb-4">
+    <main className="mt-5 px-6 pb-4">
       <h2 className="mb-6 text-sm font-medium tracking-wide text-[#2F80ED] uppercase">
         Fraud Management Dashboard
       </h2>
@@ -34,6 +34,6 @@ export function DashboardContent() {
           </div>
         </>
       )}
-    </section>
+    </main>
   );
 }
