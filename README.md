@@ -4,6 +4,10 @@ Modern single-page application demonstrating a scalable frontend architecture wi
 
 The project emphasizes strict typing, modular architecture, client-side routing, server state management, and reusable UI components built with modern frontend technologies.
 
+## Live Demo
+
+[Open Application](https://fraud-managment.vercel.app/)
+
 ## Tech Stack
 
 ### Core Technologies
