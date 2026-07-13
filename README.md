@@ -95,8 +95,9 @@ Results:
 
 Audit screenshots are available in:
 
-````text
+```text
 docs/lighthouse/
+```
 
 ## Getting Started
 
@@ -104,7 +105,7 @@ Install dependencies:
 
 ```bash
 npm install
-````
+```
 
 Start the development server:
 
