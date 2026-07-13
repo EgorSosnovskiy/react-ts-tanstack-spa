@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet';
 
+import '@/shared/lib/leaflet';
+
 interface TransactionMapProps {
   latitude?: number;
 

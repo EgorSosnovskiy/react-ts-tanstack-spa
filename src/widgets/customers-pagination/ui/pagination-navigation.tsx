@@ -22,6 +22,7 @@ export function PaginationNavigation({
       <button
         type="button"
         disabled={currentPage === 1}
+        aria-label="Previous page"
         onClick={() => onPageChange(currentPage - 1)}
         className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >
@@ -54,6 +55,7 @@ export function PaginationNavigation({
       <button
         type="button"
         disabled={currentPage === totalPages}
+        aria-label="Next page"
         onClick={() => onPageChange(currentPage + 1)}
         className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#2F80ED] transition-colors hover:text-[#1F6FDB] disabled:pointer-events-none disabled:text-slate-300"
       >

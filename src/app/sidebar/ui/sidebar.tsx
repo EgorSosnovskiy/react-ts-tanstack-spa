@@ -3,9 +3,11 @@ import { NavigationItem } from './navigation-item';
 
 interface AppSidebarProps {
   collapsed?: boolean;
+
+  onOpenHelp(): void;
 }
 
-export function AppSidebar({ collapsed = false }: AppSidebarProps) {
+export function AppSidebar({ collapsed = false, onOpenHelp }: AppSidebarProps) {
   return (
     <aside
       className={
@@ -28,7 +30,12 @@ export function AppSidebar({ collapsed = false }: AppSidebarProps) {
         }
       >
         {navigation.map((item) => (
-          <NavigationItem key={item.label} item={item} collapsed={collapsed} />
+          <NavigationItem
+            key={item.label}
+            item={item}
+            collapsed={collapsed}
+            onOpenHelp={onOpenHelp}
+          />
         ))}
       </nav>
     </aside>

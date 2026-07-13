@@ -42,7 +42,7 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 - Data fetching from Supabase
 - Responsive layout for mobile and desktop devices
 - Modular project architecture
-- Optional WebSocket chat module
+- WebSocket-based support chat
 
 ### Technical Constraints
 
@@ -71,7 +71,11 @@ The project follows a lightweight Feature-Sliced Design (FSD)-inspired architect
 
 The codebase is organized into independent layers that separate application initialization, business logic, domain entities, reusable features, shared utilities, and UI components. This approach improves scalability, maintainability, and code reuse.
 
-The project currently includes reusable CRUD workflows for customer management built with React Hook Form and TanStack Query mutations and a transaction review workflow with React Leaflet integration for ATM location visualization.
+The project currently includes:
+
+- reusable customer management workflows built with React Hook Form and TanStack Query mutations;
+- a transaction review workflow with React Leaflet integration for ATM location visualization;
+- a WebSocket-powered support chat implemented as a reusable feature.
 
 ## Environment
 
@@ -79,13 +83,28 @@ This project includes the required Supabase frontend configuration in the `.env`
 
 The provided environment variables contain only the public Supabase URL and anonymous key used by the frontend.
 
+## Quality
+
+Lighthouse audit was performed on the production build.
+
+Results:
+
+- Customers page — 100 / 96 / 100 / 100
+- Dashboard page — 99 / 96 / 100 / 100
+- Transactions page — 100 / 96 / 100 / 100
+
+Audit screenshots are available in:
+
+````text
+docs/lighthouse/
+
 ## Getting Started
 
 Install dependencies:
 
 ```bash
 npm install
-```
+````
 
 Start the development server:
 

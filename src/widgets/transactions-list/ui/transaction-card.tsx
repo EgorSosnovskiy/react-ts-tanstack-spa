@@ -25,7 +25,7 @@ export function TransactionCard({
       <button
         onClick={onClick}
         className={cn(
-          'flex w-full items-stretch justify-between px-4 pt-3 pb-1 text-left transition-colors',
+          'flex w-full cursor-pointer items-stretch justify-between px-4 pt-3 pb-1 text-left transition-colors',
           selected ? 'bg-[#f8ead2]' : 'bg-[#6b72800d] hover:bg-slate-50',
         )}
       >
