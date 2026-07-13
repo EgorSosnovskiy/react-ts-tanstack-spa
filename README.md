@@ -1,4 +1,4 @@
-# React TypeScript SPA
+# Fraud Management System
 
 Modern single-page application demonstrating a scalable frontend architecture with React, TypeScript, Vite, TanStack Router, TanStack Query, and Shadcn UI.
 
@@ -6,7 +6,7 @@ The project emphasizes strict typing, modular architecture, client-side routing,
 
 ## Live Demo
 
-[Open Application](https://fraud-managment.vercel.app/)
+[Open Application](https://fraud-management-demo.vercel.app/)
 
 ## Tech Stack
 
